@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import br.com.airu.model.Cliente;
 import br.com.airu.model.Coupon;
+import br.com.airu.model.EProduto;
 import br.com.airu.model.Pedido;
 import br.com.airu.model.Produto;
 import br.com.airu.utils.Utils;
@@ -17,9 +18,9 @@ public class ClienteTest {
 		
 		Cliente zacarias = new Cliente("Dragonborn");
 		
-		Produto caixa = new Produto("Potion of Vigorous Stamina", Utils.valorDecimal(1000), Produto.COMUM, true);
-		Produto boneca = new Produto("Daedric Sword", Utils.valorDecimal(3000), Produto.MANUFATURADO);
-		Produto relogio = new Produto("Ring of Namira", Utils.valorDecimal(6000), Produto.IMPORTADO);
+		Produto caixa = new Produto("Potion of Vigorous Stamina", Utils.valorDecimal(1000), EProduto.COMUM, true);
+		Produto boneca = new Produto("Daedric Sword", Utils.valorDecimal(3000), EProduto.MANUFATURADO);
+		Produto relogio = new Produto("Ring of Namira", Utils.valorDecimal(6000), EProduto.IMPORTADO);
 		
 		Coupon coupon2 = new Coupon(01010, Utils.valorDecimal(500.00), Utils.valorDecimal(1000.00));
 		Coupon coupon1 = new Coupon(0101, Utils.valorDecimal(250.00), Utils.valorDecimal(500.00));
@@ -34,6 +35,8 @@ public class ClienteTest {
 		
 		zacarias.addCoupon(coupon2);
 		zacarias.addCoupon(coupon1);
+		
+		System.out.println(zacarias.checkout());
 		
 		assertEquals("Pedido para Dragonborn\n" + "Valor total: 13250.00\n" + "Valor frete: 130.00\n" + "Prazo de entrega: 15 dias\n" + "Desconto: 750.00", zacarias.checkout());
 				

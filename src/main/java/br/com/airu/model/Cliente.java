@@ -48,24 +48,24 @@ public class Cliente {
 				BigDecimal adicionalPerecivel = new BigDecimal(10);
 				
 				switch (produto.getTipo()) {
-					case Produto.COMUM:
+					case COMUM:
 						total = total.add(preco.multiply(qtde));
 						prazo = prazo < 3 ? 3 : prazo;
 						frete = produto.isPerecivel() ? 
-								frete.add(Pedido.FRETE_COMUM.multiply(adicionalPerecivel)) : frete.add(Pedido.FRETE_COMUM);
+								frete.add(EFrete.COMUM.getValue().multiply(adicionalPerecivel)) : frete.add(EFrete.COMUM.getValue());
 						break;
-					case Produto.MANUFATURADO:
+					case MANUFATURADO:
 						total = total.add(preco.multiply(qtde));
 						prazo = prazo < 5 ? 5 : prazo;
 						frete = produto.isPerecivel() ? 
-								frete.add(Pedido.FRETE_MANUFATURADO.multiply(adicionalPerecivel)) : frete.add(Pedido.FRETE_MANUFATURADO);
+								frete.add(EFrete.MANUFATURADO.getValue().multiply(adicionalPerecivel)) : frete.add(EFrete.MANUFATURADO.getValue());
 						break;
-					case Produto.IMPORTADO:
+					case IMPORTADO:
 						BigDecimal qtdeNova = qtde.multiply(new BigDecimal(1.5));
 						total = total.add(Utils.escalaDecimal(preco.multiply(qtdeNova)));
 						prazo = prazo < 15 ? 15 : prazo;
 						frete = produto.isPerecivel() ? 
-								frete.add(Pedido.FRETE_IMPORTADO.multiply(adicionalPerecivel)) : frete.add(Pedido.FRETE_IMPORTADO);
+								frete.add(EFrete.IMPORTADO.getValue().multiply(adicionalPerecivel)) : frete.add(EFrete.IMPORTADO.getValue());
 						break;
 				}
 			}

@@ -1,15 +1,8 @@
 package br.com.airu.model;
 
-import java.math.BigDecimal;
-
-import br.com.airu.utils.Utils;
 
 public class Pedido {
 	
-	public static final BigDecimal FRETE_COMUM = Utils.valorDecimal(10);
-	public static final BigDecimal FRETE_MANUFATURADO = Utils.valorDecimal(10);
-	public static final BigDecimal FRETE_IMPORTADO = Utils.valorDecimal(20);
-
 	private Produto produto;
 	private int quantidade;
 

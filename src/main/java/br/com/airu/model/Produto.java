@@ -4,25 +4,21 @@ import java.math.BigDecimal;
 
 public class Produto {
 
-	public static final int COMUM = 0;
-	public static final int MANUFATURADO = 1;
-	public static final int IMPORTADO = 2;
-
 	private String titulo;
 	private BigDecimal preco;
-	private int tipo;
+	private EProduto tipo;
 	private boolean perecivel;
 
 	public Produto() {
 	}
 
-	public Produto(String titulo, BigDecimal preco, int tipo) {
+	public Produto(String titulo, BigDecimal preco, EProduto tipo) {
 		this.titulo = titulo;
 		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		this.tipo = tipo;
 	}
 	
-	public Produto(String titulo, BigDecimal preco, int tipo, boolean perecivel) {
+	public Produto(String titulo, BigDecimal preco, EProduto tipo, boolean perecivel) {
 		this.titulo = titulo;
 		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		this.tipo = tipo;
@@ -45,11 +41,11 @@ public class Produto {
 		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 
-	public int getTipo() {
+	public EProduto getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(int tipo) {
+	public void setTipo(EProduto tipo) {
 		this.tipo = tipo;
 	}
 
