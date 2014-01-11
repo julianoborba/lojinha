@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.airu.controller.LojinhaAiru;
 import br.com.airu.model.Cliente;
 import br.com.airu.model.Coupon;
 import br.com.airu.model.EProduto;
@@ -16,7 +17,7 @@ public class ClienteTest {
 	@Test
 	public void testCheckout() {
 		
-		Cliente zacarias = new Cliente("Dragonborn");
+		Cliente dragonborn = new Cliente("Dragonborn");
 		
 		Produto caixa = new Produto("Potion of Vigorous Stamina", Utils.valorDecimal(1000), EProduto.COMUM, true);
 		Produto boneca = new Produto("Daedric Sword", Utils.valorDecimal(3000), EProduto.MANUFATURADO);
@@ -29,16 +30,16 @@ public class ClienteTest {
 		Pedido pedido2 = new Pedido(boneca, 1);
 		Pedido pedido3 = new Pedido(relogio, 1);
 		
-		zacarias.addPedido(pedido1);
-		zacarias.addPedido(pedido2);
-		zacarias.addPedido(pedido3);
+		dragonborn.addPedido(pedido1);
+		dragonborn.addPedido(pedido2);
+		dragonborn.addPedido(pedido3);
 		
-		zacarias.addCoupon(coupon2);
-		zacarias.addCoupon(coupon1);
+		dragonborn.addCoupon(coupon2);
+		dragonborn.addCoupon(coupon1);
 		
-		System.out.println(zacarias.checkout());
+		System.out.println(new LojinhaAiru().fazCheckout(dragonborn));
 		
-		assertEquals("Pedido para Dragonborn\n" + "Valor total: 13250.00\n" + "Valor frete: 130.00\n" + "Prazo de entrega: 15 dias\n" + "Desconto: 750.00", zacarias.checkout());
+		assertEquals("Pedido para Dragonborn\n" + "Valor total: 13250.00\n" + "Valor frete: 130.00\n" + "Prazo de entrega: 15 dias\n" + "Desconto: 750.00", new LojinhaAiru().fazCheckout(dragonborn));
 				
 	}
 }
