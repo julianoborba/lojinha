@@ -34,40 +34,41 @@ public class LojinhaAiru {
 						total = total.add(preco.multiply(qtde));
 						prazo = prazo < 3 ? 3 : prazo;
 						frete = produto.isPerecivel() ? 
-								frete.add(EFrete.COMUM.getValue().multiply(adicionalPerecivel)) : frete.add(EFrete.COMUM.getValue());
+									frete.add(EFrete.COMUM.getValue().multiply(adicionalPerecivel)) : 
+										frete.add(EFrete.COMUM.getValue());
 						break;
 					case MANUFATURADO:
 						total = total.add(preco.multiply(qtde));
 						prazo = prazo < 5 ? 5 : prazo;
 						frete = produto.isPerecivel() ? 
-								frete.add(EFrete.MANUFATURADO.getValue().multiply(adicionalPerecivel)) : frete.add(EFrete.MANUFATURADO.getValue());
+									frete.add(EFrete.MANUFATURADO.getValue().multiply(adicionalPerecivel)) : 
+										frete.add(EFrete.MANUFATURADO.getValue());
 						break;
 					case IMPORTADO:
 						BigDecimal qtdeNova = qtde.multiply(new BigDecimal(1.5));
 						total = total.add(Utils.escalaDecimal(preco.multiply(qtdeNova)));
 						prazo = prazo < 15 ? 15 : prazo;
 						frete = produto.isPerecivel() ? 
-								frete.add(EFrete.IMPORTADO.getValue().multiply(adicionalPerecivel)) : frete.add(EFrete.IMPORTADO.getValue());
+									frete.add(EFrete.IMPORTADO.getValue().multiply(adicionalPerecivel)) : 
+										frete.add(EFrete.IMPORTADO.getValue());
 						break;
 				}
 			}
 		}
 		
+		// Logica dos coupons
 		BigDecimal desconto = Utils.valorDecimal(0);
-		boolean comDesconto = false;
-		
-		// Lógica dos coupons
 		List<Coupon> coupons = cliente.getCoupons();
 		if (!coupons.isEmpty()) {
 			Collections.sort(coupons);
 			for (Coupon coupon : coupons) {
 				if (total.compareTo(coupon.getValor_minimo()) >= 0) {
-					comDesconto = true;
 					total = total.subtract(coupon.getDesconto());
 					desconto = desconto.add(coupon.getDesconto());
 				}
 			}
 		}
+		boolean comDesconto = desconto.compareTo(BigDecimal.ZERO) > 0;
 		
 		result += "Valor total: " + total + "\n";
 		result += "Valor frete: " + frete + "\n";
