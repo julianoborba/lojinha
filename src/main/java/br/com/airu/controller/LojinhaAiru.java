@@ -64,7 +64,7 @@ public class LojinhaAiru {
 				}
 			}
 			
-			//--> Logica dos coupons
+			//--> Desconto com coupons
 			boolean houveDesconto = false;
 			BigDecimal desconto = Utils.valorDecimal(0);
 			List<Coupon> coupons = cliente.getCoupons();
