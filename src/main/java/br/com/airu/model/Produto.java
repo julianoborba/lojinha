@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Produto {
 
+	private long codigo;
 	private String titulo;
 	private BigDecimal preco;
 	private EProduto tipo;
@@ -12,6 +13,13 @@ public class Produto {
 	public Produto() {
 	}
 
+	public Produto(long codigo, String titulo, BigDecimal preco, EProduto tipo) {
+		this.codigo = codigo;
+		this.titulo = titulo;
+		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		this.tipo = tipo;
+	}
+	
 	public Produto(String titulo, BigDecimal preco, EProduto tipo) {
 		this.titulo = titulo;
 		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
@@ -19,6 +27,14 @@ public class Produto {
 	}
 	
 	public Produto(String titulo, BigDecimal preco, EProduto tipo, boolean perecivel) {
+		this.titulo = titulo;
+		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		this.tipo = tipo;
+		this.perecivel = perecivel;
+	}
+	
+	public Produto(long codigo, String titulo, BigDecimal preco, EProduto tipo, boolean perecivel) {
+		this.codigo = codigo;
 		this.titulo = titulo;
 		this.preco = preco.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		this.tipo = tipo;
@@ -57,9 +73,18 @@ public class Produto {
 		this.perecivel = perecivel;
 	}
 
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+
 	@Override
 	public String toString() {
-		return "Produto [titulo=" + titulo + ", preco=" + preco + ", tipo=" + tipo + ", perecivel=" + perecivel + "]";
+		return "Produto [codigo=" + codigo + ", titulo=" + titulo + ", preco="
+				+ preco + ", tipo=" + tipo + ", perecivel=" + perecivel + "]";
 	}
 
 }
