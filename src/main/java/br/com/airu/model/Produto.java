@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 public class Produto {
 
 	private long codigo;
+	private boolean perecivel;
 	private String titulo;
 	private BigDecimal preco;
 	private EProduto tipo;
-	private boolean perecivel;
-
+	
 	public Produto() {
 	}
 

@@ -13,7 +13,7 @@ public class TCheckout4 {
 	public void test() {
 		
 		Cliente dragonborn = null;
-		assertEquals("O checkout não foi realizado. Dados insuficientes.", new LojinhaAiru().fazCheckout(dragonborn));
+		assertEquals("O checkout não foi realizado. Dados insuficientes.", new LojinhaAiru().fazerCheckout(dragonborn));
 		
 	}
 }

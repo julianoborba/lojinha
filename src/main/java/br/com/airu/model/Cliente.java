@@ -30,10 +30,6 @@ public class Cliente {
 		coupons.add(coupon);
 	}
 
-	public String getName() {
-		return nome;
-	}
-
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}

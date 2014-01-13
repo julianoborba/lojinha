@@ -2,6 +2,9 @@ package br.com.airu.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+
 import org.junit.Test;
 
 import br.com.airu.controller.LojinhaAiru;
@@ -26,20 +29,24 @@ public class TCheckout1 {
 		Coupon coupon2 = new Coupon(01010, Utils.valorDecimal(500.00), Utils.valorDecimal(1000.00));
 		Coupon coupon1 = new Coupon(0101, Utils.valorDecimal(250.00), Utils.valorDecimal(500.00));
 		
-		Pedido pedido1 = new Pedido(potion, 2);
-		Pedido pedido2 = new Pedido(sword, 1);
-		Pedido pedido3 = new Pedido(ring, 1);
+		HashMap<Produto, BigDecimal> produtos = new HashMap<Produto, BigDecimal>();
+		produtos.put(potion, new BigDecimal(2));
+		produtos.put(sword, new BigDecimal(1));
+		produtos.put(ring, new BigDecimal(1));
+		
+		Pedido pedido1 = new Pedido(produtos);
+		pedido1.setUsarCoupons(true);
 		
 		dragonborn.addPedido(pedido1);
-		dragonborn.addPedido(pedido2);
-		dragonborn.addPedido(pedido3);
-		
 		dragonborn.addCoupon(coupon2);
 		dragonborn.addCoupon(coupon1);
 		
-		assertEquals("Pedido para Dragonborn\n" + "Valor total: 13250.00\n"
-				   + "Valor frete: 130.00\n"    + "Prazo de entrega: 15 dias\n"
-				   + "Desconto: 750.00", new LojinhaAiru().fazCheckout(dragonborn));
+		assertEquals("Pedido número 1 para Dragonborn\n"
+					+ "Valor total: 13500.00\n"
+					+ "Valor frete: 130.00\n"
+					+ "Prazo de entrega: 15 dias\n"
+					+ "Desconto: 750.00\n"
+					+ "-------------------------\n", new LojinhaAiru().fazerCheckout(dragonborn));
 				
 	}
 }
