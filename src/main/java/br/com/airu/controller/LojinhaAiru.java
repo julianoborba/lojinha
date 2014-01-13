@@ -85,9 +85,9 @@ public class LojinhaAiru {
 			result.append("Valor frete: ");
 			result.append(frete + "\n");
 			result.append("Prazo de entrega: ");
-			result.append(prazo + " dias\n");
+			result.append(prazo + " dias");
 			if (houveDesconto)
-				result.append("Desconto: " + desconto);
+				result.append("\nDesconto: " + desconto);
 		
 			return result.toString();
 			
