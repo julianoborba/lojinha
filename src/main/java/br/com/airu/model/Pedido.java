@@ -1,6 +1,5 @@
 package br.com.airu.model;
 
-
 public class Pedido {
 	
 	private Produto produto;

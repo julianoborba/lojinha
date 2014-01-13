@@ -4,24 +4,24 @@ import java.math.BigDecimal;
 
 public class Coupon implements Comparable<Coupon> {
 
-	private int codigo;
+	private long codigo;
 	private BigDecimal desconto;
-	private BigDecimal valor_minimo;
+	private BigDecimal valorMinimo;
 
 	public Coupon() {
 	}
 	
-	public Coupon(int codigo, BigDecimal desconto, BigDecimal valor_minimo) {
+	public Coupon(long codigo, BigDecimal desconto, BigDecimal valorMinimo) {
 		this.codigo = codigo;
 		this.desconto = desconto;
-		this.valor_minimo = valor_minimo;
+		this.valorMinimo = valorMinimo;
 	}
 
-	public int getCodigo() {
+	public long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -33,22 +33,22 @@ public class Coupon implements Comparable<Coupon> {
 		this.desconto = desconto;
 	}
 
-	public BigDecimal getValor_minimo() {
-		return valor_minimo;
+	public BigDecimal getValorMinimo() {
+		return valorMinimo;
 	}
 
-	public void setValor_minimo(BigDecimal valor_minimo) {
-		this.valor_minimo = valor_minimo;
+	public void setValorMinimo(BigDecimal valorMinimo) {
+		this.valorMinimo = valorMinimo;
 	}
 
 	@Override
 	public String toString() {
-		return "Coupon [codigo=" + codigo + ", desconto=" + desconto + ", valor_minimo=" + valor_minimo + "]";
+		return "Coupon [codigo=" + codigo + ", desconto=" + desconto + ", valorMinimo=" + valorMinimo + "]";
 	}
 
 	@Override
 	public int compareTo(Coupon c) {
-		return this.valor_minimo.compareTo(c.valor_minimo);
+		return this.valorMinimo.compareTo(c.valorMinimo);
 	}
 
 }

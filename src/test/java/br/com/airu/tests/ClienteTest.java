@@ -37,9 +37,11 @@ public class ClienteTest {
 		dragonborn.addCoupon(coupon2);
 		dragonborn.addCoupon(coupon1);
 		
-		System.out.println(new LojinhaAiru().fazCheckout(dragonborn));
+		// System.out.println(new LojinhaAiru().fazCheckout(dragonborn));
 		
-		assertEquals("Pedido para Dragonborn\n" + "Valor total: 13250.00\n" + "Valor frete: 130.00\n" + "Prazo de entrega: 15 dias\n" + "Desconto: 750.00", new LojinhaAiru().fazCheckout(dragonborn));
+		assertEquals("Pedido para Dragonborn\n" + "Valor total: 13250.00\n"
+				   + "Valor frete: 130.00\n"    + "Prazo de entrega: 15 dias\n"
+				   + "Desconto: 750.00", new LojinhaAiru().fazCheckout(dragonborn));
 				
 	}
 }

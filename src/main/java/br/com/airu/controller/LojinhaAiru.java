@@ -15,13 +15,22 @@ public class LojinhaAiru {
 
 	public String fazCheckout(Cliente cliente) {
 		
-		BigDecimal total = Utils.valorDecimal(0);
-		BigDecimal frete = Utils.valorDecimal(0);
-		String result = "Pedido para " + cliente.getName() + "\n";
-		int prazo = 0;
-		
+		if (cliente == null)
+			return "O checkout não foi realizado. Dados insuficientes.";
+			
 		List<Pedido> pedidos = cliente.getPedidos();
+		
 		if (!pedidos.isEmpty()) {
+
+			BigDecimal total = Utils.valorDecimal(0);
+			BigDecimal frete = Utils.valorDecimal(0);
+			
+			StringBuilder result = new StringBuilder("Pedido para ");
+			result.append(cliente.getName());
+			result.append("\n");
+			
+			int prazo = 0;
+			
 			for (Pedido pedido : pedidos) {
 				
 				Produto produto = pedido.getProduto();
@@ -54,28 +63,36 @@ public class LojinhaAiru {
 						break;
 				}
 			}
-		}
-		
-		// Logica dos coupons
-		BigDecimal desconto = Utils.valorDecimal(0);
-		List<Coupon> coupons = cliente.getCoupons();
-		if (!coupons.isEmpty()) {
-			Collections.sort(coupons);
-			for (Coupon coupon : coupons) {
-				if (total.compareTo(coupon.getValor_minimo()) >= 0) {
-					total = total.subtract(coupon.getDesconto());
-					desconto = desconto.add(coupon.getDesconto());
+			
+			//--> Logica dos coupons
+			boolean houveDesconto = false;
+			BigDecimal desconto = Utils.valorDecimal(0);
+			List<Coupon> coupons = cliente.getCoupons();
+			if (!coupons.isEmpty()) {
+				Collections.sort(coupons);
+				for (Coupon coupon : coupons) {
+					if (total.compareTo(coupon.getValorMinimo()) >= 0) {
+						total = total.subtract(coupon.getDesconto());
+						desconto = desconto.add(coupon.getDesconto());
+					}
 				}
+				houveDesconto = desconto.compareTo(BigDecimal.ZERO) > 0;
 			}
-		}
-		boolean comDesconto = desconto.compareTo(BigDecimal.ZERO) > 0;
+			//<--
+			
+			result.append("Valor total: ");
+			result.append(total + "\n");
+			result.append("Valor frete: ");
+			result.append(frete + "\n");
+			result.append("Prazo de entrega: ");
+			result.append(prazo + " dias\n");
+			if (houveDesconto)
+				result.append("Desconto: " + desconto);
 		
-		result += "Valor total: " + total + "\n";
-		result += "Valor frete: " + frete + "\n";
-		result += "Prazo de entrega: " + prazo + " dias\n";
-		result += comDesconto ? "Desconto: " + desconto : "";
-		return result;
+			return result.toString();
+			
+		} else 
+			return "Nenhum pedido foi feito.";
 		
 	}
-	
 }
